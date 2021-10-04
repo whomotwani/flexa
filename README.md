@@ -1,2 +1,3 @@
 # flexa
-A bulk file/folder renaming tool.
+
+A flexible bulk-renaming tool.
