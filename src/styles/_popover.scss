@@ -1,0 +1,29 @@
+#popover__wrapper {
+    padding: 1rem;
+    box-shadow: 0 0 8px #121212;
+    border-radius: $radius;
+    width: auto;
+    position: absolute;
+    z-index: 50;
+    background-color: $black;
+    display: inline-block;
+    right: .5rem;
+    visibility: hidden;
+}
+
+.h-separator {
+    width: 100%;
+    border: .1px solid $lightGrey;
+    margin-bottom: .3rem;
+}
+
+#popover-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popover__content {
+    font-size: smaller;
+}
