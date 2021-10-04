@@ -1,0 +1,276 @@
+$black: #282828;
+$textColor: #fdfdfd;
+$lightGrey: #d3d3d3;
+$blue: #1e90ff;
+
+$primaryColor: #009688;
+$radius: 5px;
+
+
+@import 'popover';
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: $radius;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: $radius;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    line-height: 1.5;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    scroll-behavior: smooth;
+
+    a {
+        text-decoration: none;
+        color: $blue;
+    }
+
+    .icon {
+        width: 20px;
+        cursor: pointer;
+    }
+
+    input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        border: 1px solid $lightGrey;
+        outline: none;
+
+        &:focus {
+            box-shadow: 0 0 5px $blue;
+        }
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="number"],
+    input[type="button"],
+    select {
+        padding: .3rem;
+        border-radius: $radius;
+        border: 1px solid $lightGrey;
+        outline: none;
+
+        &:focus {
+            box-shadow: 0 0 5px $blue;
+        }
+    }
+
+    input[type="button"] {
+        padding: .4rem;
+        cursor: pointer;
+        background-color: $blue;
+        color: $textColor;
+        border: none;
+    }
+
+    select {
+        padding: .4rem;
+    }
+
+    .hide {
+        display: none !important;
+    }
+}
+
+html {
+    height: 100vh;
+
+    body {
+        background-color: $black;
+        color: $textColor;
+        padding: 0.6rem;
+        height: 100%;
+    }
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.semantics {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $black;
+    border-radius: $radius;
+    padding: .5rem;
+    margin-bottom: .5rem;
+    box-shadow: 0 0 8px #121212;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+#header {
+    #textboxContainer {
+        width: 95%;
+
+        #textPath {
+            padding: .3rem;
+            border-radius: $radius;
+            border: 1px solid $lightGrey;
+            width: 100%;
+            outline: none;
+
+            &:focus {
+                box-shadow: 0 0 5px $blue;
+            }
+        }
+    }
+
+    #operationsContainer {
+        width: 15%;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+}
+
+#main {
+    align-items: flex-start;
+    height: 45%;
+    overflow: auto;
+
+    table {
+        width: 100%;
+        max-width: 100%;
+
+        .txtRenameBox {
+            padding: .2rem !important;
+            width: 100%;
+        }
+
+        td,
+        th {
+            padding: .2rem;
+        }
+
+        tbody {
+            font-size: small;
+
+            tr:hover {
+                background-color: $lightGrey;
+                color: $black;
+                opacity: .8;
+            }
+
+            .rowSelected {
+                background-color: $blue;
+                color: $textColor;
+            }
+
+        }
+
+        #checkboxTH {
+            width: 3%;
+        }
+
+        #typeTH {
+            width: 10%;
+        }
+
+        #nameTH {
+            width: 52%;
+        }
+
+        #renameTH {
+            width: 35%;
+        }
+
+        &>* {
+            text-align: left;
+        }
+    }
+}
+
+#section {
+    font-size: 14px;
+}
+
+#reselectPreviousItems {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#footer {
+    height: 45%;
+    display: inline-flex;
+    gap: .2rem;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow-y: auto;
+
+    #selectCase,
+    #delimiter {
+        width: 100%;
+    }
+
+    .btnTrim {
+        width: 40%;
+    }
+
+    #customText {
+        flex-grow: 1;
+    }
+
+
+    fieldset {
+        padding: .3rem;
+        min-width: 20%;
+        width: 22%;
+        min-height: 30%;
+        // height: 40%;
+        border-radius: $radius;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        .group {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    #dateFunctions,
+    #customFunctions {
+        width: 22%;
+
+        .group {
+            flex-grow: 1;
+            margin-right: .5rem;
+        }
+    }
+
+    #serialFunctions {
+        width: 48%;
+
+    }
+
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Flexa: A flexible bulk-renaming tool</title>
+        <link rel="stylesheet" href="../styles/app.css">
+    </head>
+    <body>
+        <div class="container">
+
+            <header id="header" class="semantics">
+                <section id="textboxContainer">
+                    <input type="text" name="txtPath" id="textPath" placeholder="Click here to choose a directory"
+                        autofocus readonly>
+                </section>
+                <section id="operationsContainer">
+                    <img src="../styles/icons/refresh_2.svg" alt="refresh" class="icon" id="refresh" title="Refresh">
+                    <img src="../styles/icons/undo_2.svg" alt="undo" class="icon timeTravelIcons" id="undo"
+                        title="Undo">
+                    <img src="../styles/icons/redo_2.svg" alt="redo" class="icon timeTravelIcons" id="redo"
+                        title="Redo">
+                    <img src="../styles/icons/info-circle.svg" alt="info" class="icon forPopover" id="info"
+                        title="Info">
+                </section>
+            </header>
+
+            <main id="main" class="semantics">
+                <table id="mainTable">
+                    <thead>
+                        <tr>
+                            <th id='checkboxTH'><input type="checkbox" id='masterCheckbox' /></th>
+                            <th id="typeTH">Item type</th>
+                            <th id="nameTH">Name</th>
+                            <th id="renameTH" class="hide">Rename</th>
+                        </tr>
+                    </thead>
+                    <tbody id="itemsList">
+                        <!-- <td>
+                            <input type="text" class="txtRenameBox" readonly="false"
+                                placeholder="Type here and hit enter" value="${baseName}">
+                        </td> -->
+                    </tbody>
+                </table>
+            </main>
+
+            <section id="section" class="semantics">
+                <span id="totalItems">
+                    Total items: 0
+                </span>
+                <span id="totalFiles">
+                    Total files: 0
+                </span>
+                <span id="totalFolders">
+                    Total folders: 0
+                </span>
+                <span id="selectedItems">
+                    Selected items: 0
+                </span>
+
+                <div id="previousElementsSelectionContainer">
+                    <input type="button" value="Zen mode" id="btnZenMode" class="hide">
+                    <input type="button" value="Deselect all" id="btnDeselectAll">
+                    <input type="button" value="Select previously transformed items" id="btnSelectPreviousItems"
+                        class="">
+                </div>
+
+            </section>
+
+            <footer id="footer" class="semantics">
+                <fieldset class="">
+                    <legend>Mode</legend>
+                    <section class="controls-section">
+                        <input type="checkbox" name="chkPrependMode" id="chkPrependMode" value="prepend" checked />
+                        <span class="checkboxLabel">Prepend</span>
+                    </section>
+                    <section class="controls-section">
+                        <input type="checkbox" name="chkAppendMode" id="chkAppendMode" value="append" />
+                        <span class="checkboxLabel">Append</span>
+                    </section>
+                </fieldset>
+
+                <fieldset class="">
+                    <legend>Delimiter</legend>
+                    <input type="text" placeholder="Default is a Single space" id="delimiter">
+                </fieldset>
+
+                <fieldset class="">
+                    <legend>Change case</legend>
+                    <select name="selectCase" id="selectCase">
+                        <option value="0">---Choose one---</option>
+                        <option value="upperCase">Upper case</option>
+                        <option value="lowerCase">Lower case</option>
+                        <option value="capitalizeCase">Capitalize case</option>
+                        <option value="kebabCase">Kebab case</option>
+                        <option value="snakeCase">Snake case</option>
+                        <!-- <option value="lowerCamelCase">Lower camel case</option>
+                        <option value="upperCamelCase">Upper camel case</option> -->
+                    </select>
+                </fieldset>
+
+                <fieldset class="">
+                    <legend>Trim</legend>
+                    <input type="button" value="Left" id="btnTrimFromLeft" class="btnTrim">
+                    <input type="button" value="Right" id="btnTrimFromRight" class="btnTrim">
+                </fieldset>
+
+                <fieldset class="" id="dateFunctions">
+                    <legend>Date</legend>
+
+                    <div class="group hide">
+                        <label for="">Date format</label>
+                        <select name="selectCase" id="selectDateFormat">
+                            <option value="0">30-10-1996 (Default)</option>
+                            <option value="0">30-10-96</option>
+                            <option value="0">30-October-1996</option>
+                            <option value="0">30-October-96</option>
+                            <option value="0">30-Oct-1996</option>
+                            <option value="0">30-Oct-96</option>
+                            <option value="0">October 30, 1996</option>
+                            <option value="0">Oct 30, 1996</option>
+                            <option value="0">Short month (10)</option>
+                            <option value="0">Medium month (Oct)</option>
+                            <option value="0">Full month (October)</option>
+                            <option value="0">Short year (96)</option>
+                            <option value="0">Full year (1996)</option>
+                        </select>
+                    </div>
+
+                    <div class="group">
+                        <label for="">Date</label>
+                        <input type="date" id="selectDate">
+                    </div>
+
+                    <input type="button" value="Apply" id="btnApplyDate" class="placeholder">
+
+                </fieldset>
+
+                <fieldset class="" id="customFunctions">
+                    <legend>Text</legend>
+                    <div class="group">
+                        <label for="">Enter text</label>
+                        <input type="text" placeholder="Enter text..." id="customText">
+                    </div>
+
+                    <input type="button" value="Apply" id="btnApplyText" class="placeholder">
+                </fieldset>
+
+                <fieldset class="hide">
+                    <legend>Metadata</legend>
+                    <input type="text" placeholder="Enter text...">
+                    <input type="button" value="Apply" id="btnApplyMetadata" class="placeholder">
+                </fieldset>
+
+                <fieldset class="" id="serialFunctions">
+                    <legend>Serial number</legend>
+                    <div class="group">
+                        <span class="">Start with</span>
+                        <input type="number" id="startWith" placeholder="Start with" value="0" step="1" max="100">
+                    </div>
+                    <div class="group">
+                        <span class="">Increase by</span>
+                        <input type="number" id="incrementBy" placeholder="Increment by" value="1" step="1" max="100">
+                    </div>
+                    <input type="button" value="Apply" id="btnApplySerialNumber" class="placeholder">
+                </fieldset>
+
+            </footer>
+
+            <div id="popover__wrapper">
+                <p id="popover-header">
+                    Info
+                    <img src="../styles/icons/x.svg" alt="close_popover" class="icon forPopover" id="closePopover"
+                        title="Close">
+                </p>
+                <div class="h-separator"></div>
+                <div class="popover__content">
+                    <p class="">Software: Flexa 1.1.1</p>
+                    <p class="">License: MIT</p>
+                    <p class="">Author: <a href="#" id="profile_link">Vijay Motwani</a></p>
+                    <p class="">Website: <a href="#" id="browser_link">flexa.forcle.in</a></p>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="../scripts/application.js"></script>
+    </body>
+</html>
