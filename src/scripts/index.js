@@ -9,8 +9,8 @@ const createWindow = () => {
 		height: 750,
 		minWidth: 950,
 		minHeight: 750,
-		maximizable: false,
-		resizable: false,
+		maximizable: true,
+		resizable: true,
 		icon: './src/icon.ico',
 		webPreferences: {
 			enableRemoteModule: true,
