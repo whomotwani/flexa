@@ -313,6 +313,21 @@ html body {
           flex-grow: 1;
 }
 
+#footer #mode-list {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-grid-column-align: start;
+      justify-self: start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: .2rem;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
 #footer fieldset {
   padding: .3rem;
   min-width: 20%;
