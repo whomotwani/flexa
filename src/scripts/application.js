@@ -230,6 +230,7 @@ function render(dirToRead = textPath.value) {
                                                 data-chkid="chk_${ino}"
                                                 data-ext="${path.extname(currentName)}"
                                                 data-basename="${baseName}"
+                                                data-operation="${null}"
                                                 data-newbasename="${null}">
                                             </td>
                                             <td>${type}</td>
@@ -330,29 +331,34 @@ function selectPreviouslyTransformedItems() {
 // rename() is a function that renames files/folders by getting values from an array of datasets
 function rename(arr, operation = "rename") {
 
-    operation == "rename" ? undoStack.push(arr) && (redoStack = []) : ''
-
     arr.forEach((el, i) => {
         let filepath = el.filepath
         let currentname = path.join(filepath, el.currentname)
         let newname = path.join(filepath, el.newbasename + el.ext)
-        fs.rename(currentname, newname, (err) => {
-            if (err)
-            {
-                if ((err.toString()).includes('no such file or directory'))
-                {
-                    dialog.showErrorBox('Error 04', `${currentname} does not exists.`)
-                } else
-                {
-                    dialog.showErrorBox('Error 05', 'Error: Can not rename opened file or filename too short.')
-                    console.error(err)
-                    operation == "rename" ? undoStack.pop() : ''
-                }
-            }
-            i + 1 == arr.length ? render() : ''
-        })
-    })
 
+        fs.access(newname, (err) => {
+            if (err || el.operation == "changeCase" && (newname !== currentname))
+            {
+                fs.rename(currentname, newname, (err) => {
+                    if (err)
+                    {
+                        if ((err.toString()).includes('no such file or directory'))
+                        {
+                            dialog.showErrorBox('Error 04', `${currentname} does not exists.`)
+                        } else
+                        {
+                            dialog.showErrorBox('Error 05', 'Error: Can not rename opened file or filename too short.')
+                            console.error(err)
+                            operation == "rename" ? undoStack.pop() : ''
+                        }
+                    }
+                    i + 1 == arr.length && operation == "rename" ? undoStack.push(arr) && (redoStack = []) : ''
+                    i + 1 == arr.length ? render() : ''
+                })
+            }
+        })
+
+    })
 
 }
 
@@ -371,6 +377,7 @@ function changeCase(ds, letterCase) {
         {
             case 'upperCase':
                 ds.forEach((el, i) => {
+                    el.operation = "changeCase"
                     el.newbasename = el.basename.toUpperCase()
                     if (i + 1 == ds.length)
                     {
@@ -380,6 +387,7 @@ function changeCase(ds, letterCase) {
                 break;
             case 'lowerCase':
                 ds.forEach((el, i) => {
+                    el.operation = "changeCase"
                     el.newbasename = el.basename.toLowerCase()
                     if (i + 1 == ds.length)
                     {
@@ -389,6 +397,7 @@ function changeCase(ds, letterCase) {
                 break;
             case 'capitalizeCase':
                 ds.forEach((el, i) => {
+                    el.operation = "changeCase"
                     str = el.basename.toLowerCase()
                     consolidated = ''
                     str.split(' ').forEach(part => {
@@ -404,6 +413,7 @@ function changeCase(ds, letterCase) {
             case 'kebabCase':
 
                 ds.forEach((el, i) => {
+                    el.operation = "changeCase"
                     let basename = el.basename
                     el.newbasename = basename.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g).join('-').toLowerCase();
 
@@ -417,6 +427,7 @@ function changeCase(ds, letterCase) {
                 break;
             case 'snakeCase':
                 ds.forEach((el, i) => {
+                    el.operation = "changeCase"
                     let basename = el.basename
                     el.newbasename = basename.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g).join('_').toLowerCase();
                     el.newbasename = `${el.newbasename.trim()}`
