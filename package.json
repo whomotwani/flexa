@@ -1,7 +1,7 @@
 {
   "name": "flexa",
   "version": "1.1.1",
-  "description": "A flexible bulk file renaming tool.",
+  "description": "A flexible bulk file/folder renaming tool.",
   "main": "src/scripts/index.js",
   "scripts": {
     "start": "electron-forge start",
