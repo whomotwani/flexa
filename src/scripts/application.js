@@ -104,6 +104,10 @@ document.addEventListener('click', (e) => {
     {
         textPath.value != "" ? render() : ''
     }
+    else if (e.target.id == "license_link")
+    {
+        shell.openPath(path.join(__dirname, 'LICENSE'))
+    }
     else if (e.target.id == "profile_link")
     {
         shell.openExternal('https://forcle.in/')
