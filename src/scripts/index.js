@@ -5,10 +5,10 @@ require('@electron/remote/main').initialize()
 const createWindow = () => {
 	// Create the browser window.
 	const mainWindow = new BrowserWindow({
-		width: 1000,
-		height: 750,
-		minWidth: 950,
-		minHeight: 750,
+		width: 950,
+		height: 700,
+		minWidth: 760,
+		minHeight: 600,
 		maximizable: true,
 		resizable: true,
 		icon: './src/icon.ico',
